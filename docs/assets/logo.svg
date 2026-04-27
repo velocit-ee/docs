@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="img" aria-label="velocit.ee">
+  <!-- Compact mark for the docs header — same caret cue. -->
+  <rect width="24" height="24" rx="3" fill="none"/>
+  <text x="2" y="17" font-family="ui-monospace, 'IBM Plex Mono', monospace"
+        font-size="12" font-weight="600" fill="currentColor">v</text>
+  <rect x="9" y="7" width="3" height="10" fill="#7dc48a"/>
+  <text x="13.5" y="17" font-family="ui-monospace, 'IBM Plex Mono', monospace"
+        font-size="12" font-weight="600" fill="currentColor">e</text>
+</svg>
