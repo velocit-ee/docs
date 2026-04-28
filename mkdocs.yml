@@ -16,7 +16,6 @@ use_directory_urls: true
 # Material gives us a structured way to do this without inline CSS leaking.
 theme:
   name: material
-  custom_dir: overrides
   language: en
   favicon: assets/favicon.svg
   logo: assets/logo.svg
