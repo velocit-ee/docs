@@ -1,7 +1,6 @@
 ---
 title: velocit.ee docs
 hide:
-  - navigation
   - toc
 ---
 
