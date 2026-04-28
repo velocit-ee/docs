@@ -86,6 +86,12 @@ markdown_extensions:
   - pymdownx.betterem
   - pymdownx.caret
   - pymdownx.details
+  # Required so :material-foo: / :octicons-bar: render as icons rather than
+  # literal text. Without these the home-page card grid looks like raw
+  # markdown soup.
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - pymdownx.highlight:
       anchor_linenums: true
       line_spans: __span
