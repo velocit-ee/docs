@@ -1,10 +1,11 @@
 /* velocit.ee — docs theme.
  *
  * Brand palette (mirrors the landing page):
- *   bg     #0b0e09  surface  #111510  surface2  #171d15  border #232d1f
- *   green  #5a9e6a  green-hi #7dc48a
- *   brown  #9b7a4e  brown-hi #c4a06a
- *   cream  #d4ccb4  text     #b8c4a8  muted     #5e7055  dim    #3a4a34
+ *   bg       #0d0d10   surface  #141418   surface2  #1c1c22   border #2a2a35
+ *   blue     #3b82f6   blue-hi  #60a5fa   blue-lo   #1d4ed8
+ *   green    #22c55e   green-hi #4ade80   green-lo  #16a34a
+ *   cyan     #22d3ee
+ *   cream    #e8eaf0   text     #c8cdd8   muted     #6b7280   dim    #3d4149
  *
  * We register two Material schemes (velocitee-dark, velocitee-light) so the
  * top-bar palette toggle still works. Light mode is a desaturated inversion
@@ -12,67 +13,67 @@
  */
 
 [data-md-color-scheme="velocitee-dark"] {
-  --md-default-bg-color:        #0b0e09;
-  --md-default-fg-color:        #b8c4a8;
-  --md-default-fg-color--light: #d4ccb4;
-  --md-default-fg-color--lighter: #d4ccb4;
-  --md-default-fg-color--lightest: #f3eedf;
+  --md-default-bg-color:           #0d0d10;
+  --md-default-fg-color:            #c8cdd8;
+  --md-default-fg-color--light:     #e8eaf0;
+  --md-default-fg-color--lighter:   #e8eaf0;
+  --md-default-fg-color--lightest:  #f3f4f9;
 
-  --md-primary-fg-color:           #5a9e6a;
-  --md-primary-fg-color--light:    #7dc48a;
-  --md-primary-fg-color--dark:     #4a8459;
-  --md-primary-bg-color:           #0b0e09;
-  --md-primary-bg-color--light:    #d4ccb4;
+  --md-primary-fg-color:            #3b82f6;
+  --md-primary-fg-color--light:     #60a5fa;
+  --md-primary-fg-color--dark:      #1d4ed8;
+  --md-primary-bg-color:            #0d0d10;
+  --md-primary-bg-color--light:     #e8eaf0;
 
-  --md-accent-fg-color:            #c4a06a;
-  --md-accent-fg-color--transparent: #c4a06a1f;
-  --md-accent-bg-color:            #0b0e09;
+  --md-accent-fg-color:             #4ade80;
+  --md-accent-fg-color--transparent: rgba(74,222,128,0.12);
+  --md-accent-bg-color:             #0d0d10;
 
-  --md-typeset-color:              #b8c4a8;
-  --md-typeset-a-color:            #7dc48a;
+  --md-typeset-color:               #c8cdd8;
+  --md-typeset-a-color:             #60a5fa;
 
-  --md-code-bg-color:              #171d15;
-  --md-code-fg-color:              #d4ccb4;
-  --md-code-hl-name-color:         #d4ccb4;
-  --md-code-hl-string-color:       #c4a06a;
-  --md-code-hl-keyword-color:      #7dc48a;
-  --md-code-hl-comment-color:      #5e7055;
-  --md-code-hl-number-color:       #c4a06a;
+  --md-code-bg-color:               #1c1c22;
+  --md-code-fg-color:               #e8eaf0;
+  --md-code-hl-name-color:          #e8eaf0;
+  --md-code-hl-string-color:        #4ade80;
+  --md-code-hl-keyword-color:       #60a5fa;
+  --md-code-hl-comment-color:       #6b7280;
+  --md-code-hl-number-color:        #22d3ee;
 
-  --md-footer-bg-color:            #0b0e09;
-  --md-footer-bg-color--dark:      #0b0e09;
-  --md-footer-fg-color:            #5e7055;
+  --md-footer-bg-color:             #0d0d10;
+  --md-footer-bg-color--dark:       #0d0d10;
+  --md-footer-fg-color:             #6b7280;
 
-  --md-admonition-bg-color:        #111510;
-  --md-admonition-fg-color:        #b8c4a8;
+  --md-admonition-bg-color:         #141418;
+  --md-admonition-fg-color:         #c8cdd8;
 }
 
 [data-md-color-scheme="velocitee-light"] {
-  --md-default-bg-color:        #f6f3ea;
-  --md-default-fg-color:        #2a3324;
-  --md-default-fg-color--light: #3a4a34;
-  --md-default-fg-color--lighter: #5e7055;
-  --md-default-fg-color--lightest: #b8c4a8;
+  --md-default-bg-color:            #f6f7fb;
+  --md-default-fg-color:            #1f232b;
+  --md-default-fg-color--light:     #2a2f38;
+  --md-default-fg-color--lighter:   #4a525d;
+  --md-default-fg-color--lightest:  #6b7280;
 
-  --md-primary-fg-color:           #4a8459;
-  --md-primary-fg-color--light:    #5a9e6a;
-  --md-primary-fg-color--dark:     #2f5e3e;
-  --md-primary-bg-color:           #f6f3ea;
-  --md-primary-bg-color--light:    #2a3324;
+  --md-primary-fg-color:            #1d4ed8;
+  --md-primary-fg-color--light:     #3b82f6;
+  --md-primary-fg-color--dark:      #1e3a8a;
+  --md-primary-bg-color:            #f6f7fb;
+  --md-primary-bg-color--light:     #1f232b;
 
-  --md-accent-fg-color:            #9b7a4e;
+  --md-accent-fg-color:             #16a34a;
 
-  --md-typeset-color:              #2a3324;
-  --md-typeset-a-color:            #4a8459;
+  --md-typeset-color:               #1f232b;
+  --md-typeset-a-color:             #1d4ed8;
 
-  --md-code-bg-color:              #ece6d3;
-  --md-code-fg-color:              #2a3324;
+  --md-code-bg-color:               #ebeef5;
+  --md-code-fg-color:               #1f232b;
 
-  --md-footer-bg-color:            #ece6d3;
-  --md-footer-fg-color:            #5e7055;
+  --md-footer-bg-color:             #ebeef5;
+  --md-footer-fg-color:             #6b7280;
 }
 
-/* Tighter typography to match the landing page's terminal feel. */
+/* Headings — Space Grotesk handles the body text; tighten kerning slightly. */
 .md-typeset {
   font-feature-settings: "ss01", "ss02";
 }
@@ -80,33 +81,39 @@
 .md-typeset h2,
 .md-typeset h3 {
   letter-spacing: -0.02em;
+  font-weight: 700;
 }
-.md-typeset h1::before {
-  content: "# ";
-  color: var(--md-default-fg-color--lightest);
-  margin-right: 0.25rem;
-}
+/* Add `// ` prefix decoration on h2 — keeps the doc-section feel light without
+   being heavy-handed. h1 stays clean for page titles. */
 .md-typeset h2::before {
-  content: "## ";
+  content: "// ";
   color: var(--md-default-fg-color--lightest);
   margin-right: 0.25rem;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-weight: 500;
 }
 
-/* Code blocks: match the landing page's terminal tile. */
+/* Code: match the mac-window aesthetic — tight border, subtle bg. */
 .md-typeset pre > code,
 .md-typeset code {
   font-feature-settings: "calt", "ss01";
 }
 .md-typeset .highlight {
-  border: 1px solid #232d1f;
+  border: 1px solid #2a2a35;
+  border-radius: 4px;
 }
 
-/* Header: brand mark uses the same gradient cue as the landing page. */
-.md-header__title {
-  letter-spacing: -0.02em;
-}
+/* Header brand mark — slightly tighter spacing. */
+.md-header__title { letter-spacing: -0.02em; }
 
-/* Make the search input feel like an input on the landing page. */
-.md-search__input {
-  font-family: "IBM Plex Mono", monospace;
+/* Search input feels like a terminal field. */
+.md-search__input { font-family: "JetBrains Mono", monospace; }
+
+/* Top-bar progress / accent strip — blue-to-green gradient like the
+   mac-window titlebar accent on velocit.ee. */
+.md-tabs {
+  background: linear-gradient(90deg, #3b82f6, #22c55e);
+  background-size: 100% 1px;
+  background-repeat: no-repeat;
+  background-position: bottom;
 }

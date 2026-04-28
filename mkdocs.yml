@@ -12,16 +12,16 @@ site_dir: site
 strict: true
 use_directory_urls: true
 
-# Match the landing-page palette (terminal aesthetic — dark green / brown / cream).
-# Material gives us a structured way to do this without inline CSS leaking.
+# Match the landing-page palette (charcoal + blue + green).
+# Tokens live in docs/assets/velocitee.css alongside an empty Material override.
 theme:
   name: material
   language: en
   favicon: assets/favicon.svg
   logo: assets/logo.svg
   font:
-    text: IBM Plex Sans
-    code: IBM Plex Mono
+    text: Space Grotesk
+    code: JetBrains Mono
   icon:
     repo: fontawesome/brands/github
     edit: material/pencil
