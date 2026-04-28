@@ -1,6 +1,6 @@
 # Contributing
 
-velocitee is open source under AGPL v3. Contributions are welcome — small
+velocitee is open source under Apache 2.0. Contributions are welcome — small
 fixes, new backends, doc improvements, real-world deployment reports.
 
 ## Before you start

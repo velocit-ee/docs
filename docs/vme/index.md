@@ -32,4 +32,4 @@ against an already-provisioned machine is safe — VME is stateless.
 ## Source
 
 - Repository: [velocit-ee/core](https://github.com/velocit-ee/core), `vme/`
-- License: AGPL v3
+- License: Apache 2.0

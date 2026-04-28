@@ -27,8 +27,9 @@ value from VME.
 
 ## Open core
 
-The four engines are open source under **AGPL v3**. Self-hosting is free —
-always.
+The four engines are open source under [**Apache 2.0**](https://www.apache.org/licenses/LICENSE-2.0).
+Self-host, fork, modify, redistribute, embed in a commercial product — go
+ahead. We'd rather grow the community than build a copyleft moat.
 
 The proprietary layer above the engines is the velocit.ee SaaS:
 

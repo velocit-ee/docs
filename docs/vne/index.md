@@ -61,4 +61,4 @@ system is left as-is (no auto-rollback). Resolve, re-run, succeed.
 ## Source
 
 - Repository: [velocit-ee/core](https://github.com/velocit-ee/core), `vne/`
-- License: AGPL v3
+- License: Apache 2.0
