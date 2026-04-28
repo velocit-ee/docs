@@ -72,5 +72,5 @@ automate it.
 
 ## License
 
-MIT for the docs build configuration; documentation content under AGPL v3
+MIT for the docs build configuration; documentation content under Apache 2.0
 in line with the engines themselves.

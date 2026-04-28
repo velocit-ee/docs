@@ -2,7 +2,7 @@ site_name: velocit.ee docs
 site_url: https://docs.velocit.ee/
 site_description: Open-core infrastructure deployment platform — engine reference, architecture, and runbooks.
 site_author: velocit.ee
-copyright: "© velocit.ee — open source under AGPL v3"
+copyright: "© velocit.ee — engines under Apache 2.0"
 repo_url: https://github.com/velocit-ee/core
 repo_name: velocit-ee/core
 edit_uri: edit/main/docs/
@@ -136,4 +136,3 @@ nav:
       - Code of conduct: contributing/code-of-conduct.md
       - Releasing: contributing/releasing.md
   - Changelog: changelog.md
-  - Commercial license: commercial-license.md
