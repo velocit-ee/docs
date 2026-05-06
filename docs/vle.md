@@ -1,6 +1,8 @@
 # VLE — lifecycle engine
 
-**Phase 4. Planned.**
+<!-- ENGINE-STATUS:BEGIN region=engine-pill-vle -->
+**Phase 4 · Planned**
+<!-- ENGINE-STATUS:END region=engine-pill-vle -->
 
 VLE keeps an existing velocitee deployment in shape over time:
 

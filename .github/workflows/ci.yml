@@ -1,0 +1,51 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    name: Build (Python ${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Verify engines.json drift
+        # Fails if any marker-delimited region in the docs site has drifted
+        # from engines.json. Fix locally with:
+        #   python tools/render_engine_status.py --write
+        run: python tools/render_engine_status.py --check
+
+      - name: Sync external content (CHANGELOG, etc.)
+        # Pulls the canonical CHANGELOG.md from velocit-ee/core via raw
+        # github (sibling-checkout fallback only matters for local dev).
+        # CORE_BRANCH defaults to main; override to test against a feature
+        # branch if needed.
+        run: bash tools/sync_external.sh
+
+      - name: Test renderer
+        run: |
+          PYTHONPATH=. python -m pytest tools/tests/ --tb=short -q
+
+      - name: Build docs (strict)
+        # `strict: true` in mkdocs.yml means any warning fails the build —
+        # broken links, missing referenced files, etc.
+        run: mkdocs build --strict

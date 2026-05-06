@@ -63,12 +63,14 @@ bare metal ──► VME ──► VNE ──► VSE ──► VLE ──► doc
 
 ## Project status
 
-| Engine | Phase | Status            | What it does |
-|--------|-------|-------------------|--------------|
-| VME    | 1     | Active            | Bare-metal provisioning. PXE + unattended OS install. |
-| VNE    | 2     | Active (initial)  | Network configuration. OPNsense, VLANs, DHCP, DNS, firewall. |
-| VSE    | 3     | Planned           | Services. Containerised stack deployment. |
-| VLE    | 4     | Planned           | Lifecycle. Drift detection, auto-docs, single-command repair. |
+<!-- ENGINE-STATUS:BEGIN region=engine-table -->
+| Engine  | Phase | Status  | Description |
+|---------|:-----:|---------|-------------|
+| **VME** | 1     | Stable  | Bare-metal provisioning — PXE boot + unattended OS install (Proxmox VE, Ubuntu Server). Two backends: `builtin` seed stack or `maas` (optional). |
+| **VNE** | 2     | Stable  | Network configuration — OPNsense VM, VLANs, DHCP, DNS, firewall. Provisioner-agnostic via the renderer registry. Discovery + Path B (`vne join`) for existing networks. |
+| VSE     | 3     | Planned | Services — containerised stack deployment, idempotent configuration |
+| VLE     | 4     | Planned | Lifecycle — monitoring, drift detection, auto-docs, single-command repair |
+<!-- ENGINE-STATUS:END region=engine-table -->
 
 ---
 

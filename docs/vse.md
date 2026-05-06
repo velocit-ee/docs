@@ -1,6 +1,8 @@
 # VSE — services engine
 
-**Phase 3. Planned.**
+<!-- ENGINE-STATUS:BEGIN region=engine-pill-vse -->
+**Phase 3 · Planned**
+<!-- ENGINE-STATUS:END region=engine-pill-vse -->
 
 VSE will deploy a containerised service stack on top of the network VNE
 configures. Out-of-box targets: PostgreSQL, MariaDB, NGINX, Caddy, Vaultwarden,

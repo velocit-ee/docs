@@ -1,8 +1,12 @@
 # VME — metal provisioning engine
 
-**Phase 1.** Bare-metal provisioning. PXE boot any x86_64 hardware, install
-Proxmox VE or Ubuntu Server fully unattended, write a handoff manifest, tear
-down the seed stack.
+<!-- ENGINE-STATUS:BEGIN region=engine-pill-vme -->
+**Phase 1 · Stable**
+<!-- ENGINE-STATUS:END region=engine-pill-vme -->
+
+Bare-metal provisioning. PXE boot any x86_64 hardware, install Proxmox VE
+or Ubuntu Server fully unattended, write a handoff manifest, tear down
+the seed stack.
 
 VME is the foundation everything else builds on. It is also independently
 useful — many users only ever need VME.

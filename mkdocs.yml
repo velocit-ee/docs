@@ -12,6 +12,12 @@ site_dir: site
 strict: true
 use_directory_urls: true
 
+# Files synced from velocit-ee/core by tools/sync_external.sh — included
+# into the rendered site via mkdocs-include-markdown but never published
+# as standalone pages.
+exclude_docs: |
+  _external/
+
 # Match the landing-page palette (charcoal + blue + green).
 # Tokens live in docs/assets/velocitee.css alongside an empty Material override.
 theme:
@@ -71,6 +77,12 @@ extra:
 plugins:
   - search
   - tags
+  - include-markdown:
+      # CHANGELOG is included from velocit-ee/core (canonical source).
+      # tools/sync_external.sh fetches the latest copy into _external/
+      # before `mkdocs build` runs — see tools/README.md for the full
+      # pipeline.
+      preserve_includer_indent: true
 
 markdown_extensions:
   - abbr

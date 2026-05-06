@@ -15,12 +15,14 @@ Pick up wherever your hardware already is.
 bare metal ──► VME ──► VNE ──► VSE ──► VLE ──► documented, running stack
 ```
 
-| Engine | Phase | Status            | Description |
-|--------|-------|-------------------|-------------|
-| VME    | 1     | Active            | PXE boot + unattended OS install for Proxmox VE and Ubuntu Server. |
-| VNE    | 2     | Active (initial)  | OPNsense VM creation, VLANs, DHCP, DNS, firewall — declarative and idempotent. |
-| VSE    | 3     | Planned           | Containerised service deployment. |
-| VLE    | 4     | Planned           | Drift detection, auto-documentation, one-command repair. |
+<!-- ENGINE-STATUS:BEGIN region=engine-table -->
+| Engine  | Phase | Status  | Description |
+|---------|:-----:|---------|-------------|
+| **VME** | 1     | Stable  | Bare-metal provisioning — PXE boot + unattended OS install (Proxmox VE, Ubuntu Server). Two backends: `builtin` seed stack or `maas` (optional). |
+| **VNE** | 2     | Stable  | Network configuration — OPNsense VM, VLANs, DHCP, DNS, firewall. Provisioner-agnostic via the renderer registry. Discovery + Path B (`vne join`) for existing networks. |
+| VSE     | 3     | Planned | Services — containerised stack deployment, idempotent configuration |
+| VLE     | 4     | Planned | Lifecycle — monitoring, drift detection, auto-docs, single-command repair |
+<!-- ENGINE-STATUS:END region=engine-table -->
 
 Each engine is independently useful. You don't need the full pipeline to get
 value from VME.
