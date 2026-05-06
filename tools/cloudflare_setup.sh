@@ -86,45 +86,70 @@ if [[ -z "${WORKER_TAG}" || "${WORKER_TAG}" == "null" ]]; then
 fi
 echo "    tag = ${WORKER_TAG}"
 
-echo "==> Looking up production trigger..."
+echo "==> Looking up triggers..."
 TRIGGERS_JSON="$(api GET "/accounts/${ACCOUNT_ID}/builds/workers/${WORKER_TAG}/triggers")"
 require_success "triggers.list" "${TRIGGERS_JSON}"
 
-# Pick the trigger marked as production. If none is explicitly marked,
-# fall back to the first trigger — single-trigger workers are common.
-TRIGGER_UUID="$(printf '%s' "${TRIGGERS_JSON}" | jq -r '
-  .result.triggers // [] |
-  (map(select(.is_production == true)) + .) |
-  .[0].trigger_uuid // empty
-')"
-if [[ -z "${TRIGGER_UUID}" ]]; then
+# The Builds API returns triggers as a flat array under .result. There's no
+# is_production flag — production is the trigger whose branch_includes
+# matches the default branch (commonly "main") and whose branch_excludes
+# is empty. We update *all* triggers so PR-preview builds run the same
+# pipeline as production; otherwise previews would lack the CHANGELOG
+# include and break the strict mkdocs build.
+TRIGGER_UUIDS=()
+while IFS= read -r uuid; do
+  [[ -n "${uuid}" ]] && TRIGGER_UUIDS+=("${uuid}")
+done < <(printf '%s' "${TRIGGERS_JSON}" | jq -r '.result[]?.trigger_uuid')
+
+if [[ "${#TRIGGER_UUIDS[@]}" -eq 0 ]]; then
   echo "ERROR: no triggers found for Worker '${WORKER_NAME}'." >&2
   echo "  Workers Builds may not be configured for this Worker yet." >&2
   echo "  Connect the GitHub repo via the dashboard first, then re-run." >&2
   exit 1
 fi
-echo "    trigger = ${TRIGGER_UUID}"
 
-CURRENT_BUILD_CMD="$(printf '%s' "${TRIGGERS_JSON}" | jq -r --arg t "${TRIGGER_UUID}" '
-  .result.triggers[] | select(.trigger_uuid == $t) | .build_command // ""
-')"
-echo "    current build_command:"
-printf '      %s\n' "${CURRENT_BUILD_CMD:-(empty)}"
-echo "    new build_command:"
+# Identify the production trigger for the manual rebuild later. If both
+# branch_includes contains 'main' and branch_excludes is empty, that's it.
+PROD_TRIGGER_UUID="$(printf '%s' "${TRIGGERS_JSON}" | jq -r '
+  .result[]?
+  | select((.branch_includes // []) | index("main"))
+  | select((.branch_excludes // []) | length == 0)
+  | .trigger_uuid
+' | head -n 1)"
+if [[ -z "${PROD_TRIGGER_UUID}" ]]; then
+  # Fallback: trigger_name matching "default branch" or "production".
+  PROD_TRIGGER_UUID="$(printf '%s' "${TRIGGERS_JSON}" | jq -r '
+    .result[]?
+    | select((.trigger_name // "") | test("default branch|production"; "i"))
+    | .trigger_uuid
+  ' | head -n 1)"
+fi
+PROD_TRIGGER_UUID="${PROD_TRIGGER_UUID:-${TRIGGER_UUIDS[0]}}"
+
+echo "    found ${#TRIGGER_UUIDS[@]} trigger(s); production = ${PROD_TRIGGER_UUID}"
+
+echo "==> New build command:"
 printf '      %s\n' "${BUILD_COMMAND}"
 
-if [[ "${CURRENT_BUILD_CMD}" == "${BUILD_COMMAND}" ]]; then
-  echo "==> Build command already current; skipping PATCH."
-else
-  echo "==> Updating build command..."
+for uuid in "${TRIGGER_UUIDS[@]}"; do
+  CURRENT_BUILD_CMD="$(printf '%s' "${TRIGGERS_JSON}" | jq -r --arg t "${uuid}" '
+    .result[]? | select(.trigger_uuid == $t) | .build_command // ""
+  ')"
+  TRIGGER_NAME="$(printf '%s' "${TRIGGERS_JSON}" | jq -r --arg t "${uuid}" '
+    .result[]? | select(.trigger_uuid == $t) | .trigger_name // "(unnamed)"
+  ')"
+  if [[ "${CURRENT_BUILD_CMD}" == "${BUILD_COMMAND}" ]]; then
+    echo "    [skip] ${TRIGGER_NAME} (${uuid:0:8}…) already current"
+    continue
+  fi
+  echo "    [patch] ${TRIGGER_NAME} (${uuid:0:8}…)"
   PATCH_BODY="$(jq -n --arg bc "${BUILD_COMMAND}" '{build_command: $bc}')"
-  PATCH_RESP="$(api PATCH "/accounts/${ACCOUNT_ID}/builds/triggers/${TRIGGER_UUID}" "${PATCH_BODY}")"
-  require_success "trigger.update" "${PATCH_RESP}"
-  echo "    OK"
-fi
+  PATCH_RESP="$(api PATCH "/accounts/${ACCOUNT_ID}/builds/triggers/${uuid}" "${PATCH_BODY}")"
+  require_success "trigger.update[${uuid:0:8}]" "${PATCH_RESP}"
+done
 
 echo "==> Triggering a manual build of main..."
-BUILD_RESP="$(api POST "/accounts/${ACCOUNT_ID}/builds/triggers/${TRIGGER_UUID}/builds" '{"branch":"main"}')"
+BUILD_RESP="$(api POST "/accounts/${ACCOUNT_ID}/builds/triggers/${PROD_TRIGGER_UUID}/builds" '{"branch":"main"}')"
 require_success "build.create" "${BUILD_RESP}"
 BUILD_UUID="$(printf '%s' "${BUILD_RESP}" | jq -r '.result.build_uuid // .result.uuid // empty')"
 if [[ -z "${BUILD_UUID}" ]]; then
@@ -139,11 +164,17 @@ DEADLINE=$(( $(date +%s) + 8 * 60 ))
 LAST_STATUS=""
 while [[ "$(date +%s)" -lt "${DEADLINE}" ]]; do
   BUILDS_JSON="$(api GET "/accounts/${ACCOUNT_ID}/builds/workers/${WORKER_TAG}/builds")"
+  # The builds list shape mirrors triggers: .result is an array directly,
+  # not .result.builds. Defend against both shapes for forward compat.
+  # The Builds API returns .result as an array. Defensive extraction
+  # in case Cloudflare ever changes the shape.
   STATUS="$(printf '%s' "${BUILDS_JSON}" | jq -r --arg b "${BUILD_UUID}" '
-    .result.builds[]? | select(.build_uuid == $b) | .status // ""
+    [(.result | if type=="array" then . else .builds // [] end)[]?
+     | select(.build_uuid == $b)] | .[0].status // ""
   ')"
   OUTCOME="$(printf '%s' "${BUILDS_JSON}" | jq -r --arg b "${BUILD_UUID}" '
-    .result.builds[]? | select(.build_uuid == $b) | .build_outcome // ""
+    [(.result | if type=="array" then . else .builds // [] end)[]?
+     | select(.build_uuid == $b)] | .[0].build_outcome // ""
   ')"
   if [[ "${STATUS}" != "${LAST_STATUS}" && -n "${STATUS}" ]]; then
     echo "    status=${STATUS}${OUTCOME:+ outcome=${OUTCOME}}"
