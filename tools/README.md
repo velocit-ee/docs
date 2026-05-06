@@ -17,9 +17,9 @@ docs.velocit.ee picks up the change on its next build.
 
 ## Cloudflare build command
 
-The Cloudflare Workers Static Assets deploy must run `sync_external.sh`
-**before** `mkdocs build` so the changelog include resolves. Update the
-Cloudflare project's build command to:
+The Cloudflare Workers Builds pipeline must run `sync_external.sh`
+**before** `mkdocs build` so the CHANGELOG include resolves. The
+configured build command is:
 
 ```bash
 pip install -r requirements.txt && bash tools/sync_external.sh && mkdocs build --strict
@@ -28,6 +28,26 @@ pip install -r requirements.txt && bash tools/sync_external.sh && mkdocs build -
 `sync_external.sh` falls back to `raw.githubusercontent.com` when no
 sibling local checkout exists, which is the case during a Cloudflare
 build. No SSH keys or PATs needed.
+
+### Re-applying the Cloudflare config
+
+`tools/cloudflare_setup.sh` is the source of truth for the Workers
+Builds trigger configuration. Run it any time the worker needs
+reconnecting (account move, fresh worker, build pipeline rewrite):
+
+```bash
+CLOUDFLARE_API_TOKEN=<token> bash tools/cloudflare_setup.sh
+```
+
+The token needs **Workers Scripts: Edit** + **Workers CI/CD: Edit** —
+generate one at https://dash.cloudflare.com/profile/api-tokens with
+the "Edit Cloudflare Workers" template, plus the Workers CI/CD scope.
+
+The script is idempotent: looks up the worker tag and trigger UUID,
+PATCHes the build command, triggers a fresh build of `main`, polls
+the build to completion, and verifies the live site shows the new
+content. Safe to re-run; skips the PATCH if the command already
+matches.
 
 ## Local development
 
