@@ -1,7 +1,11 @@
 # VNE — network configuration engine
 
-**Phase 2.** Takes a provisioned Proxmox host (the output of VME) and turns it
-into a fully configured network: an OPNsense VM, VLANs, DHCP, DNS, and a
+<!-- ENGINE-STATUS:BEGIN region=engine-pill-vne -->
+**Phase 2 · Stable**
+<!-- ENGINE-STATUS:END region=engine-pill-vne -->
+
+Takes a provisioned Proxmox host (the output of VME) and turns it into a
+fully configured network: an OPNsense VM, VLANs, DHCP, DNS, and a
 firewall baseline — without the operator ever touching HCL, playbooks, or
 `config.xml`.
 

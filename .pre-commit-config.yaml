@@ -1,0 +1,30 @@
+# pre-commit hooks for velocit-ee/docs.
+#
+# Install once per clone:
+#     pip install pre-commit jsonschema
+#     pre-commit install
+#
+# CI runs the same render-engine-status check; getting it green locally
+# means it'll be green on your PR.
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-merge-conflict
+      - id: check-yaml
+      - id: check-json
+
+  - repo: local
+    hooks:
+      - id: render-engine-status
+        # Single source of truth for engine status/version is engines.json.
+        # This hook regenerates the marker-delimited regions in the docs
+        # site so the rendered markdown can never drift from the data.
+        name: render-engine-status (local)
+        entry: python tools/render_engine_status.py --write
+        language: system
+        files: '^(engines\.json|tools/render_engine_status\.py|tools/engines_schema\.json|docs/index\.md|docs/what-is-velocitee\.md|docs/(vme|vne)/index\.md|docs/(vse|vle)\.md)$'
+        pass_filenames: false

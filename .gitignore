@@ -4,3 +4,7 @@ __pycache__/
 *.pyc
 .cache/
 .DS_Store
+
+# Synced from velocit-ee/core by tools/sync_external.sh at build time.
+# Never hand-edit; never commit. mkdocs-include-markdown pulls these in.
+docs/_external/
