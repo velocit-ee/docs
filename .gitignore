@@ -8,3 +8,10 @@ __pycache__/
 # Synced from velocit-ee/core by tools/sync_external.sh at build time.
 # Never hand-edit; never commit. mkdocs-include-markdown pulls these in.
 docs/_external/
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example
