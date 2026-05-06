@@ -25,9 +25,13 @@ Releases follow [Semantic Versioning](https://semver.org/) and
 ## Pre-1.0 stability promise
 
 Every engine starts at `0.x` while its API is still iterating. We don't
-promise stability across `0.x → 0.y` minor bumps for engines marked
-"Active (initial)" — but we do try, and breaking changes go in the
-changelog under a `Breaking` heading.
+promise contract stability across `0.x → 0.y` minor bumps — but we do
+try, and breaking changes go in the changelog under a `Breaking`
+heading. Once an engine ships its first `1.0` release, the contract is
+stable within the major version.
 
-Engines marked **Active** without qualification have a stable contract
-within a major version.
+The **Stable** badge in the engine status table (driven by
+[`engines.json`](https://github.com/velocit-ee/core/blob/main/engines.json))
+means the engine implements its declared scope and is ready for
+self-hosted use today. It is *not* a contract-stability claim — that
+comes with `1.0`. **Planned** engines have no implementation yet.

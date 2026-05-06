@@ -11,4 +11,4 @@ VLE keeps an existing velocitee deployment in shape over time:
 - Single-command repair for drift VLE knows how to fix.
 - Routine health checks and renewal (TLS certs, OS updates).
 
-This page will fill out as VLE moves from planned → active.
+This page will fill out as VLE moves from planned → stable.
