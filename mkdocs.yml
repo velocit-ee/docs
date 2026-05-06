@@ -134,8 +134,8 @@ nav:
           - Getting started: vne/getting-started.md
           - Provisioner backends: vne/provisioners.md
           - Configuration reference: vne/configuration.md
-      - VSE — services (planned): vse.md
-      - VLE — lifecycle (planned): vle.md
+      - VSE — services: vse.md
+      - VLE — lifecycle: vle.md
   - Architecture:
       - Pipeline: architecture/pipeline.md
       - Handoff manifest: architecture/manifest.md
