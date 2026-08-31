@@ -1,0 +1,37 @@
+# velocit.ee docs — Cloudflare Worker configuration
+#
+# Why this file exists: Workers Builds for the `docs` worker is configured
+# (see tools/cloudflare_setup.sh) with
+#
+#     build:  pip install -r requirements.txt && bash tools/sync_external.sh \
+#             && mkdocs build --strict
+#     deploy: npx wrangler deploy
+#
+# ...but there was no wrangler config in the repo, so the deploy step had
+# nothing to act on and every build failed. docs.velocit.ee kept serving the
+# last deploy that predated the misconfiguration, which is why the live site
+# still described the engines as "Stable" long after that stopped being true.
+#
+# This is an assets-only Worker: there is no `main`, because the docs site is
+# a static MkDocs build with no dynamic surface. Cloudflare serves ./site
+# directly from the edge.
+#
+# Deploy:      npx wrangler deploy          (after `mkdocs build`)
+# Dry run:     npx wrangler deploy --dry-run
+name = "docs"
+compatibility_date = "2026-07-01"
+account_id = "af125b9e82852f1bd4a9679ec0184783"
+
+# Production hostname. `site_dir: site` in mkdocs.yml is what fills ./site.
+routes = [
+  { pattern = "docs.velocit.ee", custom_domain = true },
+]
+
+[assets]
+directory = "./site"
+# MkDocs emits 404.html at the site root; serve it for unmatched paths rather
+# than Cloudflare's generic edge error.
+not_found_handling = "404-page"
+
+[observability]
+enabled = true
