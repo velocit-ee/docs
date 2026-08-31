@@ -44,8 +44,7 @@ docs/
   changelog.md                  # synced from velocit-ee/core/CHANGELOG.md
   commercial-license.md         # synced from velocit-ee/core/docs/
   assets/
-    favicon.svg, logo.svg, velocitee.css
-overrides/                       # custom MkDocs Material partials
+    velocitee.css                # theme tokens; no logo or favicon yet
 mkdocs.yml                       # site config + nav
 requirements.txt                 # build dependencies
 ```
@@ -64,11 +63,13 @@ automate it.
 
 ## Style
 
-- IBM Plex Mono / Sans (loaded via Google Fonts in the Material theme).
-- Palette in `docs/assets/velocitee.css`. Two schemes — `velocitee-dark`
-  (default) and `velocitee-light`.
-- Headings render with `# ` / `## ` prefixes — terminal-flavoured to match
-  the landing page.
+- IBM Plex Sans / Mono (loaded via Google Fonts in the Material theme).
+- Palette in `docs/assets/velocitee.css`. Two schemes — `velocitee-light`
+  (default) and `velocitee-dark`, mirroring the website.
+- `h2` renders with a hairline rule. The old `// ` prefix was a decoration
+  borrowed from the retired terminal aesthetic.
+- No logo and no favicon yet — deliberately. See the brand-mark section of
+  [BRAND.md](https://github.com/velocit-ee/.github/blob/main/profile/BRAND.md).
 
 ## License
 

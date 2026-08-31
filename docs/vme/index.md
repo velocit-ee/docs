@@ -1,7 +1,7 @@
 # VME — metal provisioning engine
 
 <!-- ENGINE-STATUS:BEGIN region=engine-pill-vme -->
-**Phase 1 · Stable**
+**Phase 1 · Alpha**
 <!-- ENGINE-STATUS:END region=engine-pill-vme -->
 
 Bare-metal provisioning. PXE boot any x86_64 hardware, install Proxmox VE

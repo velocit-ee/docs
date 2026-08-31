@@ -52,3 +52,15 @@ jobs:
         # `strict: true` in mkdocs.yml means any warning fails the build —
         # broken links, missing referenced files, etc.
         run: mkdocs build --strict
+
+      - name: Verify mirror of velocit-ee/core
+        # engines.json, its schema, the renderer and the renderer's tests are
+        # copied verbatim from velocit-ee/core. The drift check above only
+        # proves this repo's rendered regions match *this repo's* copy — it
+        # cannot see that the copy itself has fallen behind core. Without this
+        # step, promoting an engine in core and forgetting to mirror leaves
+        # both repos green while they disagree about the project's status.
+        #
+        # When a change originates in core, land it there first: this step is
+        # meant to fail until core's main carries the new version.
+        run: python tools/check_mirror.py

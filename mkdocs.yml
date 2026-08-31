@@ -1,8 +1,8 @@
-site_name: velocit.ee docs
+site_name: Velocitee docs
 site_url: https://docs.velocit.ee/
-site_description: Open-core infrastructure deployment platform — engine reference, architecture, and runbooks.
-site_author: velocit.ee
-copyright: "© velocit.ee — engines under Apache 2.0"
+site_description: Velocitee Vector — engine reference, architecture, and runbooks for taking hardware from bare metal to a documented, running stack.
+site_author: Velocitee
+copyright: "© Velocitee — engines under Apache 2.0. Velocitee Vector is 0.1.0; both implemented engines are alpha."
 repo_url: https://github.com/velocit-ee/core
 repo_name: velocit-ee/core
 edit_uri: edit/main/docs/
@@ -18,16 +18,18 @@ use_directory_urls: true
 exclude_docs: |
   _external/
 
-# Match the landing-page palette (charcoal + blue + green).
-# Tokens live in docs/assets/velocitee.css alongside an empty Material override.
+# Match the website palette (light page, dark chrome, one teal accent).
+# Tokens live in docs/assets/velocitee.css; see velocit-ee/.github/profile/BRAND.md.
 theme:
   name: material
   language: en
-  favicon: assets/favicon.svg
-  logo: assets/logo.svg
+  # No logo or favicon: there is no mark yet, and the glyph that used to sit
+  # here was an invented placeholder. Material falls back to its own default
+  # until a real one exists. To add one, drop the files into docs/assets/ and
+  # restore these two keys.
   font:
-    text: Space Grotesk
-    code: JetBrains Mono
+    text: IBM Plex Sans
+    code: IBM Plex Mono
   icon:
     repo: fontawesome/brands/github
     edit: material/pencil
@@ -36,16 +38,16 @@ theme:
       toggle:
         icon: material/brightness-auto
         name: Switch to light mode
-    - media: "(prefers-color-scheme: dark)"
-      scheme: velocitee-dark
-      toggle:
-        icon: material/brightness-2
-        name: Switch to light mode
     - media: "(prefers-color-scheme: light)"
       scheme: velocitee-light
       toggle:
         icon: material/brightness-7
         name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: velocitee-dark
+      toggle:
+        icon: material/brightness-2
+        name: Switch to light mode
   features:
     - navigation.instant
     - navigation.tracking
@@ -71,7 +73,7 @@ extra:
       name: velocit-ee on GitHub
     - icon: fontawesome/solid/globe
       link: https://velocit.ee
-      name: velocit.ee
+      name: velocit.ee — the Velocitee website
   generator: false
 
 plugins:
@@ -122,7 +124,7 @@ markdown_extensions:
 
 nav:
   - Home: index.md
-  - What is velocitee?: what-is-velocitee.md
+  - What is Velocitee?: what-is-velocitee.md
   - Getting started: getting-started.md
   - Engines:
       - VME — metal:

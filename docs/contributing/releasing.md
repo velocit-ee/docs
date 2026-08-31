@@ -30,8 +30,19 @@ try, and breaking changes go in the changelog under a `Breaking`
 heading. Once an engine ships its first `1.0` release, the contract is
 stable within the major version.
 
-The **Stable** badge in the engine status table (driven by
+The status badge in the engine status table (driven by
 [`engines.json`](https://github.com/velocit-ee/core/blob/main/engines.json))
-means the engine implements its declared scope and is ready for
-self-hosted use today. It is *not* a contract-stability claim — that
-comes with `1.0`. **Planned** engines have no implementation yet.
+describes maturity, not contract stability — that comes with `1.0`. The
+ladder has four rungs, and an engine does not claim a rung it has not
+reached:
+
+| Status      | What it means |
+|-------------|---------------|
+| **Planned** | No implementation yet. |
+| **Alpha**   | Implemented and usable, but the primary execution paths are not yet covered by automated tests, and interfaces may still change. |
+| **Beta**    | Feature-complete for its declared scope, with its main paths under test. Interfaces settling. |
+| **Stable**  | Interfaces are committed; breaking changes go through deprecation. |
+
+Moving an engine up a rung is a deliberate change to `engines.json`,
+reviewed like any other. "It works on my hardware" is evidence for
+Alpha, not for Beta — Beta requires the tests to exist.

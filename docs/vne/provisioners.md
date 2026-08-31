@@ -12,9 +12,16 @@ provisioner-agnostic `VNEIntent` and a specific provisioner's API or DSL.
 | `pulumi`           | Stub          | —     | Reserved name |
 | `salt`, `chef`, `puppet`, `cloudformation`, `bicep`, `nix`, `cloud-init`, `helm`, `packer` | Stubs | — | Reserved names |
 
-Stubs accept config-time validation but raise a clear `NotImplementedError`
-on execute. They exist so the registry doesn't break when an as-yet-unbuilt
-backend is selected.
+Stubs pass config-time validation and then refuse at execution, returning a
+failed `ProvisioningResult` that names the backend and tells you to pick a
+different one. (They return rather than raise, so the pipeline can report the
+failure per-renderer alongside every other outcome.)
+
+Be aware of what this means in practice: setting `provisioner: pulumi` produces
+**no warning at config time**. The deployment starts, and then stops at the
+renderer. These are reserved names, not options — eleven of the thirteen
+registered backends do nothing. If you want one, the interface is a single
+Python class; see the [renderer model](../architecture/renderers.md).
 
 ## velocitee-native
 

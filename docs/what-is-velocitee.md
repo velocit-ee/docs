@@ -18,8 +18,8 @@ bare metal ──► VME ──► VNE ──► VSE ──► VLE ──► doc
 <!-- ENGINE-STATUS:BEGIN region=engine-table -->
 | Engine  | Phase | Status  | Description |
 |---------|:-----:|---------|-------------|
-| **VME** | 1     | Stable  | Bare-metal provisioning — PXE boot + unattended OS install (Proxmox VE, Ubuntu Server). Two backends: `builtin` seed stack or `maas` (optional). |
-| **VNE** | 2     | Stable  | Network configuration — OPNsense VM, VLANs, DHCP, DNS, firewall. Provisioner-agnostic via the renderer registry. Discovery + Path B (`vne join`) for existing networks. |
+| **VME** | 1     | Alpha   | Bare-metal provisioning — PXE boot + unattended OS install (Proxmox VE, Ubuntu Server). Two backends: `builtin` seed stack or `maas` (optional). |
+| **VNE** | 2     | Alpha   | Network configuration — OPNsense VM, VLANs, DHCP, DNS, firewall. Two working backends via the renderer registry. Discovery + Path B (`vne join`) for existing networks. |
 | VSE     | 3     | Planned | Services — containerised stack deployment, idempotent configuration |
 | VLE     | 4     | Planned | Lifecycle — monitoring, drift detection, auto-docs, single-command repair |
 <!-- ENGINE-STATUS:END region=engine-table -->
@@ -33,13 +33,13 @@ The four engines are open source under [**Apache 2.0**](https://www.apache.org/l
 Self-host, fork, modify, redistribute, embed in a commercial product — go
 ahead. We'd rather grow the community than build a copyleft moat.
 
-The proprietary layer above the engines is the velocit.ee SaaS:
+A hosted layer above the engines is intended eventually — config generation, a
+config registry, drift alerts. **None of it exists.** There is no hosted
+service, no account system, and nothing to buy. The engines are the product, and
+they are complete on their own.
 
-- AI-assisted `velocitee.yml` generation from natural language.
-- Authenticated config registry for organisations.
-- Hosted dashboards and team features.
-
-You do not need the SaaS to use velocitee. The engines are the product.
+"Open core" here describes the intended shape of the project, not a product line
+you are missing out on today.
 
 ## Provisioner-agnostic by design
 

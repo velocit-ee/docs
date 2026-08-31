@@ -1,6 +1,6 @@
 ---
 title: Changelog
-description: Release history for the velocitee core engines.
+description: Release history for the Velocitee Vector engines.
 ---
 
 <!-- This page mirrors CHANGELOG.md from velocit-ee/core (the canonical

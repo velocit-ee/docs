@@ -1,119 +1,151 @@
-/* velocit.ee — docs theme.
+/* Velocitee — docs theme.
  *
- * Brand palette (mirrors the landing page):
- *   bg       #0d0d10   surface  #141418   surface2  #1c1c22   border #2a2a35
- *   blue     #3b82f6   blue-hi  #60a5fa   blue-lo   #1d4ed8
- *   green    #22c55e   green-hi #4ade80   green-lo  #16a34a
- *   cyan     #22d3ee
- *   cream    #e8eaf0   text     #c8cdd8   muted     #6b7280   dim    #3d4149
+ * Mirrors the website palette defined in
+ * velocit-ee/web/site/src/styles/global.css and pinned in
+ * velocit-ee/.github/profile/BRAND.md. Light is the default; the dark scheme
+ * redefines the values, never the roles.
  *
- * We register two Material schemes (velocitee-dark, velocitee-light) so the
- * top-bar palette toggle still works. Light mode is a desaturated inversion
- * — same hues, tuned for daytime reading.
+ *   page   #ffffff / #0f1417      ink    #10161a / #0a0e10
+ *   line   #dde3e5 / #232c31      body   #3b454b / #b9c3c8
+ *   accent #0d6e6b / #2aa39e      alpha  #9a5b00 / #d99b3d
+ *
+ * Two Material schemes are registered so the top-bar palette toggle works.
  */
 
-[data-md-color-scheme="velocitee-dark"] {
-  --md-default-bg-color:           #0d0d10;
-  --md-default-fg-color:            #c8cdd8;
-  --md-default-fg-color--light:     #e8eaf0;
-  --md-default-fg-color--lighter:   #e8eaf0;
-  --md-default-fg-color--lightest:  #f3f4f9;
-
-  --md-primary-fg-color:            #3b82f6;
-  --md-primary-fg-color--light:     #60a5fa;
-  --md-primary-fg-color--dark:      #1d4ed8;
-  --md-primary-bg-color:            #0d0d10;
-  --md-primary-bg-color--light:     #e8eaf0;
-
-  --md-accent-fg-color:             #4ade80;
-  --md-accent-fg-color--transparent: rgba(74,222,128,0.12);
-  --md-accent-bg-color:             #0d0d10;
-
-  --md-typeset-color:               #c8cdd8;
-  --md-typeset-a-color:             #60a5fa;
-
-  --md-code-bg-color:               #1c1c22;
-  --md-code-fg-color:               #e8eaf0;
-  --md-code-hl-name-color:          #e8eaf0;
-  --md-code-hl-string-color:        #4ade80;
-  --md-code-hl-keyword-color:       #60a5fa;
-  --md-code-hl-comment-color:       #6b7280;
-  --md-code-hl-number-color:        #22d3ee;
-
-  --md-footer-bg-color:             #0d0d10;
-  --md-footer-bg-color--dark:       #0d0d10;
-  --md-footer-fg-color:             #6b7280;
-
-  --md-admonition-bg-color:         #141418;
-  --md-admonition-fg-color:         #c8cdd8;
-}
-
 [data-md-color-scheme="velocitee-light"] {
-  --md-default-bg-color:            #f6f7fb;
-  --md-default-fg-color:            #1f232b;
-  --md-default-fg-color--light:     #2a2f38;
-  --md-default-fg-color--lighter:   #4a525d;
-  --md-default-fg-color--lightest:  #6b7280;
+  --md-default-bg-color:            #ffffff;
+  --md-default-fg-color:            #3b454b;
+  --md-default-fg-color--light:     #66727a;
+  --md-default-fg-color--lighter:   #98a3aa;
+  --md-default-fg-color--lightest:  #c3cbcf;
 
-  --md-primary-fg-color:            #1d4ed8;
-  --md-primary-fg-color--light:     #3b82f6;
-  --md-primary-fg-color--dark:      #1e3a8a;
-  --md-primary-bg-color:            #f6f7fb;
-  --md-primary-bg-color--light:     #1f232b;
+  --md-primary-fg-color:            #10161a;
+  --md-primary-fg-color--light:     #1b232a;
+  --md-primary-fg-color--dark:      #0a0e10;
+  --md-primary-bg-color:            #ffffff;
+  --md-primary-bg-color--light:     #b9c3c8;
 
-  --md-accent-fg-color:             #16a34a;
+  --md-accent-fg-color:             #0d6e6b;
+  --md-accent-fg-color--transparent: rgba(13, 110, 107, 0.1);
+  --md-accent-bg-color:             #ffffff;
 
-  --md-typeset-color:               #1f232b;
-  --md-typeset-a-color:             #1d4ed8;
+  --md-typeset-color:               #3b454b;
+  --md-typeset-a-color:             #0d6e6b;
 
-  --md-code-bg-color:               #ebeef5;
-  --md-code-fg-color:               #1f232b;
+  --md-code-bg-color:               #f5f7f7;
+  --md-code-fg-color:               #10161a;
+  --md-code-hl-string-color:        #16704a;
+  --md-code-hl-keyword-color:       #0d6e6b;
+  --md-code-hl-comment-color:       #98a3aa;
+  --md-code-hl-number-color:        #9a5b00;
 
-  --md-footer-bg-color:             #ebeef5;
-  --md-footer-fg-color:             #6b7280;
+  --md-footer-bg-color:             #10161a;
+  --md-footer-bg-color--dark:       #0a0e10;
+  --md-footer-fg-color:             #b9c3c8;
+
+  --md-admonition-bg-color:         #f5f7f7;
+  --md-admonition-fg-color:         #3b454b;
 }
 
-/* Headings — Space Grotesk handles the body text; tighten kerning slightly. */
-.md-typeset {
-  font-feature-settings: "ss01", "ss02";
+[data-md-color-scheme="velocitee-dark"] {
+  --md-default-bg-color:            #0f1417;
+  --md-default-fg-color:            #b9c3c8;
+  --md-default-fg-color--light:     #859399;
+  --md-default-fg-color--lighter:   #5d6b72;
+  --md-default-fg-color--lightest:  #333f46;
+
+  --md-primary-fg-color:            #0a0e10;
+  --md-primary-fg-color--light:     #141b1f;
+  --md-primary-fg-color--dark:      #0a0e10;
+  --md-primary-bg-color:            #e8edef;
+  --md-primary-bg-color--light:     #859399;
+
+  --md-accent-fg-color:             #2aa39e;
+  --md-accent-fg-color--transparent: rgba(42, 163, 158, 0.14);
+  --md-accent-bg-color:             #0f1417;
+
+  --md-typeset-color:               #b9c3c8;
+  --md-typeset-a-color:             #45bdb7;
+
+  --md-code-bg-color:               #0a0e10;
+  --md-code-fg-color:               #e8edef;
+  --md-code-hl-string-color:        #4bb07f;
+  --md-code-hl-keyword-color:       #45bdb7;
+  --md-code-hl-comment-color:       #5d6b72;
+  --md-code-hl-number-color:        #d99b3d;
+
+  --md-footer-bg-color:             #0a0e10;
+  --md-footer-bg-color--dark:       #0a0e10;
+  --md-footer-fg-color:             #859399;
+
+  --md-admonition-bg-color:         #151b1f;
+  --md-admonition-fg-color:         #b9c3c8;
 }
+
+/* ── Typography ────────────────────────────────────────────────────────────
+   IBM Plex, matching the website. Restrained heading kerning: the previous
+   -0.02em plus 700 weight was a display-face treatment on a page that is
+   mostly reference material. */
 .md-typeset h1,
 .md-typeset h2,
-.md-typeset h3 {
-  letter-spacing: -0.02em;
-  font-weight: 700;
-}
-/* Add `// ` prefix decoration on h2 — keeps the doc-section feel light without
-   being heavy-handed. h1 stays clean for page titles. */
-.md-typeset h2::before {
-  content: "// ";
-  color: var(--md-default-fg-color--lightest);
-  margin-right: 0.25rem;
-  font-family: "JetBrains Mono", ui-monospace, monospace;
-  font-weight: 500;
+.md-typeset h3,
+.md-typeset h4 {
+  letter-spacing: -0.011em;
+  font-weight: 600;
 }
 
-/* Code: match the mac-window aesthetic — tight border, subtle bg. */
-.md-typeset pre > code,
-.md-typeset code {
-  font-feature-settings: "calt", "ss01";
+/* h2 gets a rule rather than a `// ` prefix. The prefix was a decoration
+   borrowed from the old terminal aesthetic; it read as noise in a document
+   that a reader is scanning for a specific section. */
+.md-typeset h2 {
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid var(--md-default-fg-color--lightest);
 }
-.md-typeset .highlight {
-  border: 1px solid #2a2a35;
+
+/* ── Code ─────────────────────────────────────────────────────────────────── */
+.md-typeset .highlight,
+.md-typeset pre > code {
   border-radius: 4px;
 }
+.md-typeset .highlight {
+  border: 1px solid var(--md-default-fg-color--lightest);
+}
 
-/* Header brand mark — slightly tighter spacing. */
-.md-header__title { letter-spacing: -0.02em; }
+/* ── Status chips ──────────────────────────────────────────────────────────
+   The engine status pills rendered by tools/render_engine_status.py arrive as
+   bold text ("**Phase 1 · Alpha**"). Give the maturity word the same weight it
+   carries on the website so a reader who lands here from a search sees the
+   project's state without reading a paragraph first. */
+.md-typeset .engine-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  font-family: var(--md-code-font-family);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  padding: 0.15em 0.55em;
+  border: 1px solid currentcolor;
+  border-radius: 3px;
+}
 
-/* Search input feels like a terminal field. */
-.md-search__input { font-family: "JetBrains Mono", monospace; }
+/* ── Header ────────────────────────────────────────────────────────────────
+   The gradient accent strip under the tabs is gone with the rest of the
+   two-accent palette; a hairline does the same job without implying motion. */
+.md-header { border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
+.md-header__title { letter-spacing: -0.011em; }
+.md-tabs { border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
 
-/* Top-bar progress / accent strip — blue-to-green gradient like the
-   mac-window titlebar accent on velocit.ee. */
-.md-tabs {
-  background: linear-gradient(90deg, #3b82f6, #22c55e);
-  background-size: 100% 1px;
-  background-repeat: no-repeat;
-  background-position: bottom;
+/* ── Search ────────────────────────────────────────────────────────────────
+   Left as the theme's own sans. The old rule set it in mono, which made
+   ordinary prose queries hard to read for no benefit. */
+
+/* ── Logo slot ─────────────────────────────────────────────────────────────
+   There is no mark yet. With no `logo:` key set, Material falls back to its
+   own default glyph, which reads as though it were ours. Hide it so the docs
+   header is the wordmark alone, matching the website.
+
+   When a real mark exists: restore `logo:` in mkdocs.yml and delete this rule. */
+.md-header__button.md-logo,
+.md-nav__title .md-nav__button.md-logo {
+  display: none;
 }

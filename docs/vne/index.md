@@ -1,7 +1,7 @@
 # VNE — network configuration engine
 
 <!-- ENGINE-STATUS:BEGIN region=engine-pill-vne -->
-**Phase 2 · Stable**
+**Phase 2 · Alpha**
 <!-- ENGINE-STATUS:END region=engine-pill-vne -->
 
 Takes a provisioned Proxmox host (the output of VME) and turns it into a
@@ -34,9 +34,11 @@ language. Today VNE ships:
 - `opentofu+ansible` — OpenTofu creates the VM, Ansible configures the network.
   Hard phase gate: phase 2 never runs after phase 1 fails.
 
-11 other backends (Pulumi, Salt, Chef, Puppet, …) are reserved as stubs.
-Adding a new one is one Renderer subclass and one registry entry. See the
-[renderer model](../architecture/renderers.md).
+Eleven other names (Pulumi, Salt, Chef, Puppet, CloudFormation, Bicep, Nix,
+Helm, Packer, cloud-init, ansible-only) are registered as stubs. They pass
+config-time validation and then refuse at execution — reserved slots, not
+options. Adding a real one is one Renderer subclass and one registry entry; see
+the [renderer model](../architecture/renderers.md).
 
 ## Idempotency and resume
 
