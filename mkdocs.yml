@@ -125,6 +125,9 @@ markdown_extensions:
 nav:
   - Home: index.md
   - What is Velocitee?: what-is-velocitee.md
+  - Products:
+      - Velocitee Vector: products/vector.md
+      - Telia Vector: products/telia-vector.md
   - Getting started: getting-started.md
   - Engines:
       - VME — metal:
