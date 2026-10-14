@@ -19,15 +19,17 @@ useful — many users only ever need VME.
 ## Architecture in one diagram
 
 ```
-seed machine                           target machine
-┌────────────────────┐                 ┌─────────────────┐
-│ vme deploy         │                 │                 │
-│  ├─ dnsmasq        │ ◄── DHCP ────── │  PXE boot       │
-│  ├─ nginx          │ ◄── HTTP ────── │   ▼             │
-│  └─ iPXE           │                 │  unattended     │
-│                    │                 │  install        │
-│  writes manifest   │ ◄── shutdown ── │   ▼             │
-└────────────────────┘                 └─────────────────┘
+       SEED MACHINE (Or Gateway)                    TARGET MACHINE
+   ┌───────────────────────────────┐              ┌─────────────────┐
+   │  vme deploy                   │              │                 │
+   │   ├── dnsmasq (DHCP + TFTP)   │─────────────▶│  1. PXE Boot    │
+   │   │                           │  (DHCP / PXE)│        │        │
+   │   ├── nginx (HTTP Netboot)    │─────────────▶│  2. Autoinstall │
+   │   │                           │  (Cloud-init)│        │        │
+   │   └── iPXE Chainloader        │              │        ▼        │
+   │                               │              │  3. Complete &  │
+   │  Writes handoff manifest      │◀─────────────│     Reboot/Halt │
+   └───────────────────────────────┘  (Complete)  └─────────────────┘
 ```
 
 The seed stack is fully containerised (Docker Compose). Re-running VME

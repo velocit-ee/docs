@@ -14,23 +14,26 @@
                                     │   CARRIER EDGE CPE    │
                                     │  (OpenWrt / Linux)    │
                                     │   192.168.100.1/24    │
-                                    │  Vector Agent (:8088) │
+                                    │  Vector Gateway :8088 │
                                     └───────────┬───────────┘
                                                 │
                      ┌──────────────────────────┴──────────────────────────┐
-                     │ Port 1 (VLAN 10: Trusted)                           │ Port 4 (Physical Quarantine: VLAN 999)
+  Port 1 (Trusted)   │                                                     │   Port 4 (Quarantine)
+  VLAN 10 Untagged   │                                                     │   VLAN 999 Isolated
                      ▼                                                     ▼
            ┌──────────────────┐                                  ┌───────────────────┐
            │ OPERATOR LAPTOP  │                                  │ TARGET MICROSERVER│
            │  192.168.100.10  │                                  │  192.168.100.50   │
-           │ Web UI (:3000)   │                                  │ Blank NVMe + TPM2 │
+           │  Web UI (:3000)  │                                  │ Blank NVMe + TPM2 │
            └──────────────────┘                                  └───────────────────┘
                                                                            │
                                                                            ▼
-                                                                  [ 1. PXE / HTTP Boot ]
-                                                                  [ 2. Zero-Trust Block ]
-                                                                  [ 3. LUKS2 + TPM Seal ]
-                                                                  [ 4. VLAN 10 Untagged ]
+                                                                 ┌───────────────────┐
+                                                                 │ 1. UEFI PXE/iPXE  │
+                                                                 │ 2. Egress Blocked │
+                                                                 │ 3. LUKS2 + TPM2   │
+                                                                 │ 4. Promote VLAN 10│
+                                                                 └───────────────────┘
 ```
 
 ---

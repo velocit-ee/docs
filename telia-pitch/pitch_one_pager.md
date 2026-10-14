@@ -21,21 +21,21 @@
 │                                                                                         │
 │   TARGET PERSONA                                                                        │
 │   Kati — Founder of a 12-person legal & financial advisory firm in Tallinn              │
-│   • Manages sensitive client contracts, audit logs, and accounting databases.          │
+│   • Manages sensitive client contracts, audit logs, and accounting databases.           │
 │   • Bound by strict Estonian & EU data confidentiality (GDPR / NIS2 compliance).        │
 │   • Has no internal IT staff and cannot afford €150/hour managed service retainers.     │
-│   • Facing unpredictable US hyperscaler cloud bills (€600+/month) with latency issues. │
+│   • Facing unpredictable US hyperscaler cloud bills (€600+/month) with latency issues.  │
 │                                                                                         │
 │ ─────────────────────────────────────────────────────────────────────────────────────── │
 │                                                                                         │
 │   THE SME DILEMMA                                                                       │
-│   "To control our data, we have to buy servers we don't know how to install.           │
-│    To keep it simple, we rent public cloud that leaks our margin and sovereignty."     │
+│   "To control our data, we have to buy servers we don't know how to install.            │
+│    To keep it simple, we rent public cloud that leaks our margin and sovereignty."      │
 │                                                                                         │
 │   The SME IT Gap:                                                                       │
-│   1. Zero-Touch Gap: Installing bare-metal servers requires specialized sysadmin skills.│
-│   2. Sovereignty Gap: Moving sensitive client records off-site creates compliance risk. │
-│   3. Idle Infrastructure: The Telia business router in the office only does basic NAT. │
+│   1. Zero-Touch Gap: Bare-metal installation requires specialized sysadmin skills.      │
+│   2. Sovereignty Gap: Off-site client records introduce EU compliance & data risks.     │
+│   3. Idle Infrastructure: The Telia business router in the office only does basic NAT.  │
 │                                                                                         │
 │ ─────────────────────────────────────────────────────────────────────────────────────── │
 │                                                                                         │

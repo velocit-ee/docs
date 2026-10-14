@@ -4,8 +4,16 @@ velocitee is a sequential pipeline of independent engines. Each engine does
 one thing, writes a structured handoff manifest, and passes it to the next.
 
 ```
-bare metal ──► VME ──► VNE ──► VSE ──► VLE ──► documented, running stack
-              provision  network  services  lifecycle
+    bare metal
+         │
+         ▼
+   ┌───────────┐       ┌───────────┐       ┌───────────┐       ┌───────────┐
+   │    VME    │──────▶│    VNE    │──────▶│    VSE    │──────▶│    VLE    │──────▶ documented,
+   │ provision │       │  network  │       │ services  │       │ lifecycle │        running
+   └───────────┘       └───────────┘       └───────────┘       └───────────┘        stack
+     PXE boot            OPNsense           containers          monitoring
+   + OS install        + VLANs/DHCP        + idempotent        + drift
+                       + DNS + FW          + git-driven        + auto-docs
 ```
 
 ## Why pipeline, not monolith

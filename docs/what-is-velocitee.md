@@ -12,7 +12,16 @@ Pick up wherever your hardware already is.
 ## The pipeline
 
 ```
-bare metal ──► VME ──► VNE ──► VSE ──► VLE ──► documented, running stack
+    bare metal
+         │
+         ▼
+   ┌───────────┐       ┌───────────┐       ┌───────────┐       ┌───────────┐
+   │    VME    │──────▶│    VNE    │──────▶│    VSE    │──────▶│    VLE    │──────▶ documented,
+   │ provision │       │  network  │       │ services  │       │ lifecycle │        running
+   └───────────┘       └───────────┘       └───────────┘       └───────────┘        stack
+     PXE boot            OPNsense           containers          monitoring
+   + OS install        + VLANs/DHCP        + idempotent        + drift
+                       + DNS + FW          + git-driven        + auto-docs
 ```
 
 <!-- ENGINE-STATUS:BEGIN region=engine-table -->

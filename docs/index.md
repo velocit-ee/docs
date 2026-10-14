@@ -22,8 +22,16 @@ provisioner syntax by hand.
     [core README](https://github.com/velocit-ee/core#project-status--read-this-first).
 
 ```text
-bare metal ──► VME ──► VNE ──► VSE ──► VLE ──► documented, running stack
-              provision  network  services   lifecycle
+    bare metal
+         │
+         ▼
+   ┌───────────┐       ┌───────────┐       ┌───────────┐       ┌───────────┐
+   │    VME    │──────▶│    VNE    │──────▶│    VSE    │──────▶│    VLE    │──────▶ documented,
+   │ provision │       │  network  │       │ services  │       │ lifecycle │        running
+   └───────────┘       └───────────┘       └───────────┘       └───────────┘        stack
+     PXE boot            OPNsense           containers          monitoring
+   + OS install        + VLANs/DHCP        + idempotent        + drift
+                       + DNS + FW          + git-driven        + auto-docs
 ```
 
 ---
