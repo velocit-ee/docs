@@ -21,17 +21,18 @@ provisioner syntax by hand.
     of what is and is not covered by tests is in the
     [core README](https://github.com/velocit-ee/core#project-status--read-this-first).
 
-```text
-    bare metal
-         │
-         ▼
-   ┌───────────┐       ┌───────────┐       ┌───────────┐       ┌───────────┐
-   │    VME    │──────▶│    VNE    │──────▶│    VSE    │──────▶│    VLE    │──────▶ documented,
-   │ provision │       │  network  │       │ services  │       │ lifecycle │        running
-   └───────────┘       └───────────┘       └───────────┘       └───────────┘        stack
-     PXE boot            OPNsense           containers          monitoring
-   + OS install        + VLANs/DHCP        + idempotent        + drift
-                       + DNS + FW          + git-driven        + auto-docs
+```mermaid
+flowchart LR
+    BM[("Bare Metal")] --> VME["<b>VME</b><br/>provision<br/><small>PXE boot + OS install</small>"]
+    VME -->|manifest.json| VNE["<b>VNE</b><br/>network<br/><small>OPNsense + VLANs/DHCP + FW</small>"]
+    VNE -->|manifest.json| VSE["<b>VSE</b><br/>services<br/><small>containers + git-driven</small>"]
+    VSE -->|manifest.json| VLE["<b>VLE</b><br/>lifecycle<br/><small>monitoring + drift</small>"]
+    VLE --> STACK(["Documented, Running Stack"])
+
+    classDef implemented stroke:#0284c7,stroke-width:2px;
+    classDef planned stroke:#64748b,stroke-width:1px,stroke-dasharray: 4 4;
+    class VME,VNE implemented;
+    class VSE,VLE planned;
 ```
 
 ---

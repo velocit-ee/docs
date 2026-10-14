@@ -18,18 +18,22 @@ useful — many users only ever need VME.
 
 ## Architecture in one diagram
 
-```
-       SEED MACHINE (Or Gateway)                    TARGET MACHINE
-   ┌───────────────────────────────┐              ┌─────────────────┐
-   │  vme deploy                   │              │                 │
-   │   ├── dnsmasq (DHCP + TFTP)   │─────────────▶│  1. PXE Boot    │
-   │   │                           │  (DHCP / PXE)│        │        │
-   │   ├── nginx (HTTP Netboot)    │─────────────▶│  2. Autoinstall │
-   │   │                           │  (Cloud-init)│        │        │
-   │   └── iPXE Chainloader        │              │        ▼        │
-   │                               │              │  3. Complete &  │
-   │  Writes handoff manifest      │◀─────────────│     Reboot/Halt │
-   └───────────────────────────────┘  (Complete)  └─────────────────┘
+```mermaid
+sequenceDiagram
+    autonumber
+    actor Tech as Operator
+    participant Seed as Seed Machine / Gateway
+    participant Target as Target Machine
+
+    Tech->>Seed: vme deploy (start dnsmasq + nginx + iPXE stack)
+    Tech->>Target: Power On (Bare Metal)
+    Target->>Seed: 1. DHCP Discover / PXE Request
+    Seed-->>Target: 2. DHCP Lease + iPXE Chainload URL
+    Target->>Seed: 3. HTTP GET /boot.ipxe & netboot ISO
+    Seed-->>Target: 4. Kernel, initrd & Subiquity autoinstall
+    Note over Target: 5. Unattended OS Install & LUKS2 Encryption
+    Target->>Seed: 6. Provisioning Complete (Shutdown / Reboot)
+    Note over Seed: 7. Writes validated handoff manifest.json
 ```
 
 The seed stack is fully containerised (Docker Compose). Re-running VME

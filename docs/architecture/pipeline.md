@@ -3,17 +3,18 @@
 velocitee is a sequential pipeline of independent engines. Each engine does
 one thing, writes a structured handoff manifest, and passes it to the next.
 
-```
-    bare metal
-         │
-         ▼
-   ┌───────────┐       ┌───────────┐       ┌───────────┐       ┌───────────┐
-   │    VME    │──────▶│    VNE    │──────▶│    VSE    │──────▶│    VLE    │──────▶ documented,
-   │ provision │       │  network  │       │ services  │       │ lifecycle │        running
-   └───────────┘       └───────────┘       └───────────┘       └───────────┘        stack
-     PXE boot            OPNsense           containers          monitoring
-   + OS install        + VLANs/DHCP        + idempotent        + drift
-                       + DNS + FW          + git-driven        + auto-docs
+```mermaid
+flowchart LR
+    BM[("Bare Metal")] --> VME["<b>VME</b><br/>provision<br/><small>PXE boot + OS install</small>"]
+    VME -->|manifest.json| VNE["<b>VNE</b><br/>network<br/><small>OPNsense + VLANs/DHCP + FW</small>"]
+    VNE -->|manifest.json| VSE["<b>VSE</b><br/>services<br/><small>containers + git-driven</small>"]
+    VSE -->|manifest.json| VLE["<b>VLE</b><br/>lifecycle<br/><small>monitoring + drift</small>"]
+    VLE --> STACK(["Documented, Running Stack"])
+
+    classDef implemented stroke:#0284c7,stroke-width:2px;
+    classDef planned stroke:#64748b,stroke-width:1px,stroke-dasharray: 4 4;
+    class VME,VNE implemented;
+    class VSE,VLE planned;
 ```
 
 ## Why pipeline, not monolith
@@ -60,8 +61,9 @@ See the [handoff manifest reference](manifest.md) for the schema in detail.
 VNE introduced *renderer phases* — `infra` and `config`. The pipeline
 orchestrator enforces the order:
 
-```
-all 'infra' renderers ──►  all 'config' renderers
+```mermaid
+flowchart LR
+    Infra["All 'infra' renderers"] --> Config["All 'config' renderers"]
 ```
 
 If any infra renderer fails, every config renderer in the same pipeline is

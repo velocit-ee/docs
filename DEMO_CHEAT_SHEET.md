@@ -6,12 +6,14 @@
 
 ## The 4-Step Demo Flow
 
-```
-┌───────────────────┐       ┌───────────────────┐       ┌───────────────────┐       ┌───────────────────┐
-│      STEP 1       │  ──▶  │      STEP 2       │  ──▶  │      STEP 3       │  ──▶  │      STEP 4       │
-│  15-Sec Overview  │       │  Native Mac Load  │       │  Open Router UI   │       │   Deploy & SSH    │
-│  "What is this?"  │       │ Activity Monitor  │       │   192.168.100.1   │       │  192.168.100.50   │
-└───────────────────┘       └───────────────────┘       └───────────────────┘       └───────────────────┘
+```mermaid
+flowchart LR
+    S1["<b>STEP 1: 15-Sec Overview</b><br/><i>'What is this?'</i>"] --> S2["<b>STEP 2: Native Host Load</b><br/><i>Activity Monitor · 27 MB RAM</i>"]
+    S2 --> S3["<b>STEP 3: Open Router UI</b><br/><i>http://192.168.100.1 / :8088</i>"]
+    S3 --> S4["<b>STEP 4: Deploy & SSH</b><br/><i>ssh ubuntu@192.168.100.50</i>"]
+
+    classDef step stroke:#0284c7,stroke-width:2px;
+    class S1,S2,S3,S4 step;
 ```
 
 ---

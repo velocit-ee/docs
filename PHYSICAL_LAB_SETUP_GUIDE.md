@@ -6,34 +6,35 @@
 
 ## 1. Physical Lab Architecture
 
-```
-                                  [ WAN Uplink / Telia Fiber ]
-                                                │
-                                                ▼
-                                    ┌───────────────────────┐
-                                    │   CARRIER EDGE CPE    │
-                                    │  (OpenWrt / Linux)    │
-                                    │   192.168.100.1/24    │
-                                    │  Vector Gateway :8088 │
-                                    └───────────┬───────────┘
-                                                │
-                     ┌──────────────────────────┴──────────────────────────┐
-  Port 1 (Trusted)   │                                                     │   Port 4 (Quarantine)
-  VLAN 10 Untagged   │                                                     │   VLAN 999 Isolated
-                     ▼                                                     ▼
-           ┌──────────────────┐                                  ┌───────────────────┐
-           │ OPERATOR LAPTOP  │                                  │ TARGET MICROSERVER│
-           │  192.168.100.10  │                                  │  192.168.100.50   │
-           │  Web UI (:3000)  │                                  │ Blank NVMe + TPM2 │
-           └──────────────────┘                                  └───────────────────┘
-                                                                           │
-                                                                           ▼
-                                                                 ┌───────────────────┐
-                                                                 │ 1. UEFI PXE/iPXE  │
-                                                                 │ 2. Egress Blocked │
-                                                                 │ 3. LUKS2 + TPM2   │
-                                                                 │ 4. Promote VLAN 10│
-                                                                 └───────────────────┘
+```mermaid
+flowchart TD
+    WAN["<b>WAN Uplink / Telia Fiber</b>"] --> CPE
+
+    subgraph CPE ["<b>Carrier Edge CPE</b> (OpenWrt / Linux · 192.168.100.1)"]
+        direction TB
+        Agent["<b>Vector Gateway Daemon</b> (:8088)<br/>REST API & State Machine"]
+        DNS["<b>dnsmasq</b><br/>DHCP & iPXE Chainloader"]
+        NFT["<b>nftables</b><br/>Zero-Trust Isolation & VLAN Switch"]
+    end
+
+    CPE -->|"Port 1 (Trusted VLAN 10)"| Laptop["<b>Operator Laptop</b><br/>192.168.100.10<br/>Web Console (:3000)"]
+    CPE -->|"Port 4 (Quarantine VLAN 999)"| Server["<b>Target Microserver</b><br/>192.168.100.50<br/>Blank NVMe + TPM 2.0"]
+
+    subgraph Flow ["<b>Automated Zero-Touch Sequence</b>"]
+        direction LR
+        P1["1. UEFI PXE / iPXE"] --> P2["2. Egress Blocked"]
+        P2 --> P3["3. Subiquity + LUKS2 TPM2"]
+        P3 --> P4["4. Promote to VLAN 10"]
+    end
+
+    Server -.-> Flow
+
+    classDef cpe stroke:#0284c7,stroke-width:2px;
+    classDef target stroke:#eab308,stroke-width:2px;
+    classDef trusted stroke:#10b981,stroke-width:2px;
+    class CPE cpe;
+    class Server target;
+    class Laptop trusted;
 ```
 
 ---
