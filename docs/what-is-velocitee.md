@@ -30,8 +30,8 @@ flowchart LR
 |---------|:-----:|---------|-------------|
 | **VME** | 1     | Alpha   | Bare-metal provisioning — PXE boot + unattended OS install (Proxmox VE, Ubuntu Server). Two backends: `builtin` seed stack or `maas` (optional). |
 | **VNE** | 2     | Alpha   | Network configuration — OPNsense VM, VLANs, DHCP, DNS, firewall. Two working backends via the renderer registry. Discovery + Path B (`vne join`) for existing networks. |
-| VSE     | 3     | Planned | Services — containerised stack deployment, idempotent configuration |
-| VLE     | 4     | Planned | Lifecycle — monitoring, drift detection, auto-docs, single-command repair |
+| VSE     | 3     | Planned | Services — containerised stack deployment, idempotent configuration, and sovereign AI cleanrooms (Velocitee Prism) |
+| VLE     | 4     | Planned | Lifecycle — monitoring, drift detection, tamper-evident SHA-256 audit ledger, and single-command repair |
 <!-- ENGINE-STATUS:END region=engine-table -->
 
 Each engine is independently useful. You don't need the full pipeline to get
