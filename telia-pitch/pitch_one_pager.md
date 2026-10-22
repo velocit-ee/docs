@@ -11,44 +11,35 @@
 > [!NOTE]
 > Per Telia Challenge track rules: **Only one slide. Must focus strictly on Target Persona + Problem (not features).**
 
-```
-┌─────────────────────────────────────────────────────────────────────────────────────────┐
-│                                                                                         │
-│   TELIA PRIVATE EDGE                                                                    │
-│   Sovereign On-Premises Cloud for Nordic & Baltic SMEs — Powered by Velocitee           │
-│                                                                                         │
-│ ─────────────────────────────────────────────────────────────────────────────────────── │
-│                                                                                         │
-│   TARGET PERSONA                                                                        │
-│   Kati — Founder of a 12-person legal & financial advisory firm in Tallinn              │
-│   • Manages sensitive client contracts, audit logs, and accounting databases.           │
-│   • Bound by strict Estonian & EU data confidentiality (GDPR / NIS2 compliance).        │
-│   • Has no internal IT staff and cannot afford €150/hour managed service retainers.     │
-│   • Facing unpredictable US hyperscaler cloud bills (€600+/month) with latency issues.  │
-│                                                                                         │
-│ ─────────────────────────────────────────────────────────────────────────────────────── │
-│                                                                                         │
-│   THE SME DILEMMA                                                                       │
-│   "To control our data, we have to buy servers we don't know how to install.            │
-│    To keep it simple, we rent public cloud that leaks our margin and sovereignty."      │
-│                                                                                         │
-│   The SME IT Gap:                                                                       │
-│   1. Zero-Touch Gap: Bare-metal installation requires specialized sysadmin skills.      │
-│   2. Sovereignty Gap: Off-site client records introduce EU compliance & data risks.     │
-│   3. Idle Infrastructure: The Telia business router in the office only does basic NAT.  │
-│                                                                                         │
-│ ─────────────────────────────────────────────────────────────────────────────────────── │
-│                                                                                         │
-│   THE COMMERCIAL OPPORTUNITY FOR TELIA (Business Guru)                                  │
-│   • Transform Telia Business Broadband from a commoditized pipe (€45/mo) into a         │
-│     managed "Edge Cloud Gateway" subscription (€119/mo).                                │
-│   • 0% Churn Moat: Once an SME runs local operations on hardware provisioned through    │
-│     Telia's network edge, the switching cost to an alternative ISP is prohibitive.      │
-│   • Partnership Model: Telia captures high-margin recurring channel revenue with zero   │
-│     R&D maintenance by offering 'Velocitee-powered' automated edge provisioning.        │
-│                                                                                         │
-└─────────────────────────────────────────────────────────────────────────────────────────┘
-```
+### Telia Private Edge: Slide Deck One-Pager
+*Sovereign On-Premises Cloud for Nordic & Baltic SMEs — Powered by Velocitee*
+
+---
+
+#### 1. Target Persona
+**Kati — Founder of a 12-person legal & financial advisory firm in Tallinn**
+* **Mission-Critical Data:** Manages sensitive client contracts, audit logs, and accounting databases.
+* **Regulatory Mandate:** Bound by strict Estonian & EU data confidentiality (GDPR / NIS2 compliance).
+* **Resource Constraint:** Has no internal IT staff and cannot afford €150/hour managed service retainers.
+* **Cloud Pain:** Facing unpredictable US hyperscaler cloud bills (€600+/month) with latency and compliance friction.
+
+---
+
+#### 2. The SME Dilemma
+> *"To control our data, we have to buy servers we don't know how to install.  
+> To keep it simple, we rent public cloud that leaks our margin and sovereignty."*
+
+**The SME IT Gap:**
+1. **Zero-Touch Gap:** Bare-metal installation requires specialized sysadmin skills.
+2. **Sovereignty Gap:** Off-site client records introduce EU compliance & data transfer risks.
+3. **Idle Infrastructure:** The Telia business router in the office currently only performs basic NAT.
+
+---
+
+#### 3. The Commercial Opportunity for Telia (Business Guru)
+* **High-Margin Value Add:** Transform Telia Business Broadband from a commoditized pipe (€45/mo) into a managed **"Edge Cloud Gateway"** subscription (€119/mo).
+* **0% Churn Moat:** Once an SME runs local operations on hardware provisioned through Telia's network edge, the switching cost to an alternative ISP is prohibitive.
+* **Partnership Model:** Telia captures high-margin recurring channel revenue with zero R&D maintenance by offering 'Velocitee-powered' automated edge provisioning.
 
 ---
 
